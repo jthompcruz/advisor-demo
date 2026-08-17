@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/inspira-advisor-mui-library-3f4835a9-35d2-492b-8946-06f4f0b9afaf/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/inspira-advisor-mui-library-3f4835a9-35d2-492b-8946-06f4f0b9afaf/tokens/fig-tokens.css">
+<link rel="stylesheet" href="_ds/inspira-advisor-mui-library-3f4835a9-35d2-492b-8946-06f4f0b9afaf/tokens/fig-typography.css">
+<link rel="stylesheet" href="_ds/inspira-advisor-mui-library-3f4835a9-35d2-492b-8946-06f4f0b9afaf/tokens/colors.css">
+<link rel="stylesheet" href="_ds/inspira-advisor-mui-library-3f4835a9-35d2-492b-8946-06f4f0b9afaf/tokens/typography.css">
+<link rel="stylesheet" href="_ds/inspira-advisor-mui-library-3f4835a9-35d2-492b-8946-06f4f0b9afaf/tokens/shape.css">
+<link rel="stylesheet" href="_ds/inspira-advisor-mui-library-3f4835a9-35d2-492b-8946-06f4f0b9afaf/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/inspira-advisor-mui-library-3f4835a9-35d2-492b-8946-06f4f0b9afaf/tokens/base.css">
+<link rel="stylesheet" href="_ds/inspira-advisor-mui-library-3f4835a9-35d2-492b-8946-06f4f0b9afaf/styles.css">
+<script src="_ds/inspira-advisor-mui-library-3f4835a9-35d2-492b-8946-06f4f0b9afaf/_ds_bundle.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #F7F6F5; }
+a { color: #4553A9; }
+a:hover { color: #1B216B; }
+input, select, textarea, button { font-family: inherit; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#F7F6F5;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#1C1C1C;-webkit-font-smoothing:antialiased">
+
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;min-height:100vh;align-items:stretch">
+
+<nav style="width:236px;flex-shrink:0;background:#1B216B;border-radius:0 32px 0 0;box-shadow:1px 4px 20px 0 rgba(0,0,0,0.1);padding:6px 8px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px">
+  <div style="display:flex;flex-direction:column;gap:4px;padding:14px 12px 8px 14px;align-items:flex-start">
+    <img src="assets/inspira-logo-gold.svg" alt="Inspira" style="display:block;width:auto;height:30px">
+    <span style="font-weight:700;font-size:18px;line-height:24px;color:#FFFFFF">Oversight</span>
+  </div>
+  <div onClick="{{ goDashboard }}" style="{{ navDashStyle }}" style-hover="background:rgba(255,255,255,0.12)">
+    <span style="flex-grow:1;font-weight:600;font-size:14px;line-height:20px;color:#FFFFFF">Dashboard</span>
+  </div>
+</nav>
+
+<main style="flex:1;min-width:0;display:flex;flex-direction:column;background:#F9F9F8">
+  <header style="height:64px;flex-shrink:0;background:#FFFFFF;box-shadow:1px 1px 4px 0 rgba(61,61,58,0.2);padding:8px clamp(16px,3vw,48px);box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:5">
+    <div style="display:flex;align-items:center;gap:16px;flex:1 1 auto;min-width:0">
+      <span style="font-weight:700;font-size:24px;line-height:32px;color:#1B216B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ pageTitle }}</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:6px">
+        <a href="#" onClick="{{ noop }}" style="font-weight:600;font-size:14px;line-height:20px;color:#4553A9;text-decoration:none">Contact us</a>
+        <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="OpeninNewFilled" size="16" hint-size="16px,16px" style="color:#1B216B"></x-import>
+      </div>
+      <div style="position:relative;flex-shrink:0">
+        <div onClick="{{ toggleProfile }}" title="Your profile" style="width:40px;height:40px;border-radius:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 150ms cubic-bezier(0.4,0,0.2,1);background:{{ profileBg }}" style-hover="background:rgba(69,83,169,0.08)">
+          <img src="assets/icon-user.png" alt="Profile" width="24" height="24" style="display:block;width:24px;height:24px">
+        </div>
+        <sc-if value="{{ profileOpen }}">
+          <div style="position:absolute;right:0;top:48px;z-index:40;min-width:200px">
+            <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Menu" open="{{ true }}" hint-size="200px,88px">
+              <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.MenuItem" onClick="{{ openProfile }}" hint-size="200px,36px">Profile</x-import>
+              <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.MenuItem" onClick="{{ signOut }}" hint-size="200px,36px">Sign out</x-import>
+            </x-import>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </header>
+
+  <div style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:stretch">
+
+  <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ true }}">
+  <div style="padding:clamp(16px,2.5vw,32px);display:flex;flex-direction:column;gap:36px;max-width:1440px;box-sizing:border-box;width:100%">
+    <div style="background:#FFFFFF;border-radius:20px;box-shadow:1px 1px 6px 0 rgba(41,37,33,0.1),2px 4px 6px 0 rgba(41,37,33,0.15);padding:24px;display:flex;flex-wrap:wrap;align-items:center;gap:24px">
+      <div style="width:100px;height:100px;flex-shrink:0;border-radius:16px;background:#F1F0EE;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'PP Formula','Archivo Narrow',Inter,sans-serif;font-weight:400;font-size:34px;line-height:1;color:#1B216B">{{ initials }}</span>
+      </div>
+      <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0">
+        <span style="font-family:'PP Formula','Archivo Narrow',Inter,sans-serif;font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.3;color:#1C1C1C">Welcome, {{ advisorName }}</span>
+        <span style="font-weight:700;font-size:18px;line-height:24px;color:#716A5B">{{ firmName }}</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(20px,3vw,48px);padding:0 clamp(0px,2vw,48px);min-width:0">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-weight:600;font-size:14px;line-height:20px;color:#1C1C1C">Total clients</span>
+          <span style="font-weight:700;font-size:24px;line-height:32px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ clientCount }}</span>
+        </div>
+        <div style="width:1px;align-self:stretch;background:#F1F0EE"></div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-weight:600;font-size:14px;line-height:20px;color:#1C1C1C">Total assets under management</span>
+          <span style="font-weight:700;font-size:24px;line-height:32px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ aum }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="background:#FFFFFF;border-radius:16px;box-shadow:0 4px 20px 0 rgba(61,61,58,0.25);overflow:hidden">
+        <div style="min-height:64px;background:#F1F0EE;border-bottom:1px solid #E0E0E0;padding:12px 14px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+          <span style="flex-grow:1;font-weight:500;font-size:20px;line-height:32px;letter-spacing:0.15px;color:rgba(0,0,0,0.87)">Book of business</span>
+          <div style="flex:1 1 200px;max-width:240px;min-width:160px">
+            <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.TextField" size="small" variant="outlined" placeholder="Search clients" value="{{ query }}" onChange="{{ onQuery }}" full-width="{{ true }}" hint-size="240px,40px"></x-import>
+          </div>
+          <div style="width:1px;align-self:stretch;background:#DAD7CF"></div>
+          <div style="display:flex;align-items:center;gap:4px;flex-shrink:0">
+            <div onClick="{{ toggleStar }}" title="Save this view" style="width:40px;height:40px;border-radius:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:{{ starColor }}" style-hover="background:rgba(0,0,0,0.04)">
+              <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="StarSharp" size="20" hint-size="20px,20px"></x-import>
+            </div>
+            <div onClick="{{ openDisclosure }}" title="Download book of business" style="width:40px;height:40px;border-radius:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#716A5B" style-hover="background:rgba(0,0,0,0.04)">
+              <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="FileDownloadFilled" size="20" hint-size="20px,20px"></x-import>
+            </div>
+            <div onClick="{{ refresh }}" title="Refresh" style="width:40px;height:40px;border-radius:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#716A5B" style-hover="background:rgba(0,0,0,0.04)">
+              <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="CachedFilled" size="20" hint-size="20px,20px"></x-import>
+            </div>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto"><div style="min-width:1114px">
+        <div style="display:flex;align-items:stretch;height:56px;border-bottom:1px solid #DAD7CF;background:#FFFFFF">
+          <div style="width:264px;flex-shrink:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center;gap:6px;position:relative"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Account holder</span><div style="position:absolute;right:0;top:16px;width:1px;height:24px;background:#E0E0E0"></div></div>
+          <div style="width:180px;flex-shrink:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center;gap:6px;position:relative"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Account number</span><div style="position:absolute;right:0;top:16px;width:1px;height:24px;background:#E0E0E0"></div></div>
+          <div style="flex:1;min-width:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center;gap:6px;position:relative"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Account type</span><div style="position:absolute;right:0;top:16px;width:1px;height:24px;background:#E0E0E0"></div></div>
+          <div style="width:160px;flex-shrink:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-end;gap:6px;position:relative"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Available cash</span><div style="position:absolute;right:0;top:16px;width:1px;height:24px;background:#E0E0E0"></div></div>
+          <div onClick="{{ sortByValue }}" style="width:180px;flex-shrink:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-end;gap:6px;position:relative;cursor:pointer"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Market value</span><span style="display:flex;color:#716A5B">{{ sortGlyph }}</span><div style="position:absolute;right:0;top:16px;width:1px;height:24px;background:#E0E0E0"></div></div>
+          <div style="width:150px;flex-shrink:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center;gap:6px"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Last activity</span></div>
+        </div>
+
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+          <div onClick="{{ r.open }}" style="display:flex;align-items:stretch;height:52px;border-bottom:1px solid #E9E7E2;cursor:pointer;transition:background 150ms cubic-bezier(0.4,0,0.2,1)" style-hover="background:rgba(69,83,169,0.04)">
+            <div style="width:264px;flex-shrink:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center"><span style="font-weight:600;font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#4553A9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.holder }}</span></div>
+            <div style="width:180px;flex-shrink:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center"><span style="font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ r.number }}</span></div>
+            <div style="flex:1;min-width:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center"><span style="font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#1C1C1C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.type }}</span></div>
+            <div style="width:160px;flex-shrink:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-end"><span style="font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ r.cash }}</span></div>
+            <div style="width:180px;flex-shrink:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-end"><span style="font-weight:500;font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ r.value }}</span></div>
+            <div style="width:150px;flex-shrink:0;padding:0 10px;box-sizing:border-box;display:flex;align-items:center"><span style="font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ r.last }}</span></div>
+          </div>
+        </sc-for>
+
+        </div></div>
+        <div style="height:44px;display:flex;align-items:center;justify-content:flex-end;gap:24px;padding:0 16px">
+          <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:#1C1C1C">Rows per page: 25</span>
+          <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ rangeLabel }}</span>
+          <span style="display:flex;align-items:center;gap:4px;color:rgba(0,0,0,0.38)">
+            <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="ChevronLeftFilled" size="20" hint-size="20px,20px"></x-import>
+            <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="ChevronRightFilled" size="20" hint-size="20px,20px"></x-import>
+          </span>
+        </div>
+      </div>
+      <span style="font-style:italic;font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#716A5B">As of {{ asOf }}</span>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isAccount }}">
+  <div style="display:flex;flex-direction:column;align-items:stretch">
+    <div style="background:#FFFFFF;box-shadow:1px 1px 4px 0 rgba(61,61,58,0.2);max-width:1440px;width:100%;box-sizing:border-box">
+      <div style="padding:24px clamp(16px,2.5vw,32px);display:flex;flex-direction:column;gap:16px;border-bottom:1px solid #E9E7E2">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span onClick="{{ goDashboard }}" style="font-weight:600;font-size:13px;line-height:18px;letter-spacing:0.16px;color:#4553A9;cursor:pointer">Book of business</span>
+          <span style="font-size:13px;line-height:18px;color:rgba(0,0,0,0.38)">/</span>
+          <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:rgba(0,0,0,0.68)">Account detail</span>
+        </div>
+        <span style="font-family:'PP Formula','Archivo Narrow',Inter,sans-serif;font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.3;color:rgba(0,0,0,0.87)">{{ holderName }}</span>
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:clamp(20px,2.5vw,32px)">
+          <div style="flex:1 1 280px;max-width:400px">
+            <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Select" label="Account" options="{{ accountOptions }}" value="{{ accountLabel }}" onChange="{{ onAccountChange }}" full-width="{{ true }}" hint-size="400px,68px"></x-import>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;justify-content:center;padding-bottom:6px">
+            <span style="font-weight:600;font-size:14px;line-height:20px;color:#1C1C1C;white-space:nowrap">Total account value</span>
+            <span style="font-weight:700;font-size:18px;line-height:24px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ acctValue }}</span>
+          </div>
+          <div style="width:1px;height:48px;background:#F1F0EE;margin-bottom:6px"></div>
+          <div style="display:flex;flex-direction:column;gap:4px;justify-content:center;padding-bottom:6px">
+            <span style="font-weight:600;font-size:14px;line-height:20px;color:#1C1C1C;white-space:nowrap">Available cash</span>
+            <span style="font-weight:700;font-size:18px;line-height:24px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ acctCash }}</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:4px">
+        <div onClick="{{ tabHoldings }}" style="{{ tabHoldingsStyle }}" style-hover="background:rgba(69,83,169,0.04)">Holdings</div>
+        <div onClick="{{ tabTx }}" style="{{ tabTxStyle }}" style-hover="background:rgba(69,83,169,0.04)">Transactions</div>
+        <div onClick="{{ tabStmt }}" style="{{ tabStmtStyle }}" style-hover="background:rgba(69,83,169,0.04)">Statements &amp; tax forms</div>
+        <div onClick="{{ tabBill }}" style="{{ tabBillStyle }}" style-hover="background:rgba(69,83,169,0.04)">Billing activity</div>
+      </div>
+    </div>
+
+    <div style="padding:clamp(16px,2.5vw,32px);display:flex;flex-direction:column;gap:19px;max-width:1440px;width:100%;box-sizing:border-box">
+
+      <sc-if value="{{ showBillAlert }}">
+        <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Alert" severity="error" variant="standard" title="{{ billAlertTitle }}" hint-size="100%,78px">{{ billAlertBody }}</x-import>
+      </sc-if>
+
+      <div style="background:#FFFFFF;border-radius:16px;box-shadow:0 4px 20px 0 rgba(61,61,58,0.25);overflow:hidden">
+        <div style="min-height:64px;background:#F1F0EE;border-bottom:1px solid #E0E0E0;padding:12px 14px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+          <div style="flex-grow:1;display:flex;flex-direction:column;min-width:0">
+            <span style="font-weight:500;font-size:20px;line-height:32px;letter-spacing:0.15px;color:rgba(0,0,0,0.87)">{{ tabTitle }}</span>
+            <span style="font-style:italic;font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#716A5B">As of {{ asOf }}</span>
+          </div>
+          <sc-if value="{{ showAddForms }}">
+            <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Button" variant="outlined" size="medium" onClick="{{ goForms }}" hint-size="150px,40px">Additional forms</x-import>
+          </sc-if>
+          <div style="width:1px;align-self:stretch;background:#DAD7CF"></div>
+          <div style="display:flex;align-items:center;gap:4px;flex-shrink:0">
+            <div onClick="{{ openDisclosure }}" title="Download" style="width:40px;height:40px;border-radius:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#716A5B" style-hover="background:rgba(0,0,0,0.04)">
+              <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="FileDownloadFilled" size="20" hint-size="20px,20px"></x-import>
+            </div>
+            <div onClick="{{ refresh }}" title="Refresh" style="width:40px;height:40px;border-radius:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#716A5B" style-hover="background:rgba(0,0,0,0.04)">
+              <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="CachedFilled" size="20" hint-size="20px,20px"></x-import>
+            </div>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto"><div style="min-width:1140px">
+        <div style="display:flex;align-items:stretch;min-height:56px;border-bottom:1px solid #DAD7CF">
+          <sc-for list="{{ cols }}" as="c" hint-placeholder-count="6">
+            <div style="{{ c.style }}"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">{{ c.label }}</span></div>
+          </sc-for>
+        </div>
+
+        <sc-for list="{{ tableRows }}" as="row" hint-placeholder-count="4">
+          <div style="display:flex;align-items:stretch;min-height:52px;border-bottom:1px solid #E9E7E2">
+            <sc-for list="{{ row.cells }}" as="cell" hint-placeholder-count="6">
+              <div style="{{ cell.style }}">
+                <sc-if value="{{ cell.isChip }}">
+                  <span style="{{ cell.chipStyle }}">{{ cell.text }}</span>
+                </sc-if>
+                <sc-if value="{{ cell.isText }}" hint-placeholder-val="{{ true }}">
+                  <span style="{{ cell.textStyle }}">{{ cell.text }}</span>
+                </sc-if>
+                <sc-if value="{{ cell.isLink }}">
+                  <span onClick="{{ openDisclosure }}" style="font-weight:600;font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#4553A9;cursor:pointer">{{ cell.text }}</span>
+                </sc-if>
+                <sc-if value="{{ cell.sub }}">
+                  <span style="font-size:14px;line-height:1.43;letter-spacing:0.17px;color:rgba(28,28,28,0.7);font-variant-numeric:tabular-nums">{{ cell.subText }}</span>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+
+        </div></div>
+        <div style="height:44px;display:flex;align-items:center;justify-content:flex-end;gap:24px;padding:0 16px">
+          <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:#1C1C1C">Rows per page: 25</span>
+          <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ tableRange }}</span>
+          <span style="display:flex;align-items:center;gap:4px;color:rgba(0,0,0,0.38)">
+            <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="ChevronLeftFilled" size="20" hint-size="20px,20px"></x-import>
+            <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="ChevronRightFilled" size="20" hint-size="20px,20px"></x-import>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isForms }}">
+  <div style="padding:clamp(16px,2.5vw,32px);display:flex;flex-direction:column;gap:24px;max-width:1440px;width:100%;box-sizing:border-box">
+    <span style="font-family:'PP Formula','Archivo Narrow',Inter,sans-serif;font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.3;color:rgba(0,0,0,0.87)">Forms library</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:24px">
+      <sc-for list="{{ forms }}" as="f" hint-placeholder-count="6">
+        <div onClick="{{ openDisclosure }}" style="background:#FFFFFF;border-radius:16px;box-shadow:0 4px 20px 0 rgba(61,61,58,0.15);padding:24px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:box-shadow 150ms cubic-bezier(0.4,0,0.2,1)" style-hover="box-shadow:0 8px 23px 0 rgba(61,61,58,0.25)">
+          <span style="font-weight:700;font-size:18px;line-height:24px;color:#1B216B">{{ f.name }}</span>
+          <span style="font-size:14px;line-height:1.43;letter-spacing:0.17px;color:rgba(0,0,0,0.68)">{{ f.desc }}</span>
+          <span style="font-weight:600;font-size:14px;line-height:20px;color:#4553A9;margin-top:8px">Download PDF</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isBillingCenter }}">
+  <div style="padding:clamp(16px,2.5vw,32px);display:flex;flex-direction:column;gap:19px;max-width:1440px;width:100%;box-sizing:border-box">
+    <span style="font-family:'PP Formula','Archivo Narrow',Inter,sans-serif;font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.3;color:rgba(0,0,0,0.87)">Billing center</span>
+    <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Alert" severity="error" variant="standard" title="{{ centerAlertTitle }}" hint-size="100%,78px">{{ centerAlertBody }}</x-import>
+    <div style="background:#FFFFFF;border-radius:16px;box-shadow:0 4px 20px 0 rgba(61,61,58,0.25);overflow:hidden">
+      <div style="overflow-x:auto"><div style="min-width:900px">
+      <div style="display:flex;align-items:stretch;min-height:56px;border-bottom:1px solid #DAD7CF;background:#F1F0EE">
+        <div style="flex:1.4;min-width:0;padding:0 10px;display:flex;align-items:center"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Account holder</span></div>
+        <div style="flex:1;min-width:0;padding:0 10px;display:flex;align-items:center"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Issue date</span></div>
+        <div style="flex:1.2;min-width:0;padding:0 10px;display:flex;align-items:center"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Fee type</span></div>
+        <div style="flex:1;min-width:0;padding:0 10px;display:flex;align-items:center;justify-content:flex-end"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Amount</span></div>
+        <div style="width:173px;flex-shrink:0;padding:0 10px;display:flex;align-items:center"><span style="font-weight:500;font-size:14px;line-height:24px;letter-spacing:0.17px;color:#1C1C1C">Status</span></div>
+      </div>
+      <sc-for list="{{ centerRows }}" as="b" hint-placeholder-count="6">
+        <div onClick="{{ b.open }}" style="display:flex;align-items:stretch;min-height:52px;border-bottom:1px solid #E9E7E2;cursor:pointer" style-hover="background:rgba(69,83,169,0.04)">
+          <div style="flex:1.4;min-width:0;padding:0 10px;display:flex;align-items:center"><span style="font-weight:600;font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#4553A9">{{ b.holder }}</span></div>
+          <div style="flex:1;min-width:0;padding:0 10px;display:flex;align-items:center"><span style="font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ b.date }}</span></div>
+          <div style="flex:1.2;min-width:0;padding:0 10px;display:flex;align-items:center"><span style="font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#1C1C1C">{{ b.fee }}</span></div>
+          <div style="flex:1;min-width:0;padding:0 10px;display:flex;align-items:center;justify-content:flex-end"><span style="font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ b.amount }}</span></div>
+          <div style="width:173px;flex-shrink:0;padding:0 10px;display:flex;align-items:center"><span style="{{ b.chipStyle }}">{{ b.status }}</span></div>
+        </div>
+      </sc-for>
+      </div></div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isProfile }}">
+  <div style="padding:clamp(16px,2.5vw,32px);display:flex;flex-direction:column;gap:24px;max-width:1440px;width:100%;box-sizing:border-box">
+    <span style="font-family:'PP Formula','PP Formula Condensed','Archivo Narrow',Inter,sans-serif;font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.3;color:rgba(0,0,0,0.87)">{{ advisorName }}</span>
+    <div style="background:#FFFFFF;border-radius:16px;box-shadow:0 4px 20px 0 rgba(61,61,58,0.15);padding:clamp(16px,2.5vw,32px);display:flex;flex-direction:column;gap:24px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="width:72px;height:72px;flex-shrink:0;border-radius:100px;background:#F1F0EE;display:flex;align-items:center;justify-content:center">
+          <span style="font-family:'PP Formula','PP Formula Condensed','Archivo Narrow',Inter,sans-serif;font-weight:400;font-size:26px;line-height:1;color:#1B216B">{{ initials }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span style="font-weight:700;font-size:18px;line-height:24px;color:#1B216B">{{ advisorName }}</span>
+          <span style="font-size:14px;line-height:20px;letter-spacing:0.17px;color:#716A5B">{{ firmName }}</span>
+        </div>
+      </div>
+      <div style="height:1px;background:#E9E7E2"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:24px">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-weight:600;font-size:10px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Email address</span>
+          <span style="font-size:14px;line-height:20px;letter-spacing:0.17px;color:#1C1C1C">{{ email }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-weight:600;font-size:10px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Advisor ID</span>
+          <span style="font-size:14px;line-height:20px;letter-spacing:0.17px;color:#1C1C1C;font-variant-numeric:tabular-nums">ADV-40218</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-weight:600;font-size:10px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Clients</span>
+          <span style="font-size:14px;line-height:20px;letter-spacing:0.17px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ clientCount }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-weight:600;font-size:10px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Assets under management</span>
+          <span style="font-size:14px;line-height:20px;letter-spacing:0.17px;color:#1C1C1C;font-variant-numeric:tabular-nums">{{ aum }}</span>
+        </div>
+      </div>
+      <div style="height:1px;background:#E9E7E2"></div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Button" variant="contained" size="medium" onClick="{{ openDrawer }}" hint-size="150px,40px">Edit profile</x-import>
+        <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Button" variant="text" size="medium" onClick="{{ signOut }}" hint-size="110px,40px">Sign out</x-import>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <div style="padding:0 clamp(16px,2.5vw,32px);max-width:1440px;width:100%;box-sizing:border-box;margin-top:auto">
+    <div style="height:1px;background:#E9E7E2;margin:32px 0 40px"></div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:48px;padding-bottom:32px">
+      <div style="display:flex;flex-direction:column;gap:20px;flex-shrink:0">
+        <a href="#" onClick="{{ noop }}" style="font-weight:600;font-size:14px;line-height:20px;color:#4553A9;text-decoration:none">Privacy</a>
+        <a href="#" onClick="{{ noop }}" style="font-weight:600;font-size:14px;line-height:20px;color:#4553A9;text-decoration:none">Security</a>
+        <a href="#" onClick="{{ noop }}" style="font-weight:600;font-size:14px;line-height:20px;color:#4553A9;text-decoration:none">Terms of use and service</a>
+        <a href="#" onClick="{{ noop }}" style="font-weight:600;font-size:14px;line-height:20px;color:#4553A9;text-decoration:none">Contact us</a>
+      </div>
+      <div style="flex:1 1 420px;max-width:560px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:#1C1C1C">©2026 Inspira Financial</span>
+        <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:rgba(0,0,0,0.68);text-wrap:pretty">Inspira Financial Trust, LLC and its affiliates perform the duties of a directed custodian and/or an administrator of consumer directed benefits and, as such, do not provide due diligence to third parties on prospective investments, platforms, sponsors, or service providers, and do not offer or sell investments or provide investment, tax, or legal advice.</span>
+        <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:rgba(0,0,0,0.68);text-wrap:pretty">Inspira and Inspira Financial are trademarks of Inspira Financial Trust, LLC.</span>
+        <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:rgba(0,0,0,0.68);text-wrap:pretty">Information on market value and gain/loss is for informational purposes only and should not be relied upon in making investment decisions. Your official statements and confirmations contain the most accurate and up-to-date information on your account holdings.</span>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</main>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLogin }}">
+<div style="min-height:100vh;background:#1B216B;position:relative;display:flex;flex-direction:column;overflow:hidden">
+
+  <div style="position:absolute;left:0;right:0;top:88px;bottom:0;pointer-events:none;background-image:url(&quot;data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 860'&gt;&lt;g fill='none' stroke='%238E9BE8' stroke-width='1.4' stroke-linecap='round' opacity='0.5'&gt;&lt;path d='M -80 60 C 220 70 420 400 760 440 C 1090 478 1250 250 1420 40'/&gt;&lt;path d='M -80 94 C 220 104 420 434 760 474 C 1090 512 1250 284 1420 74'/&gt;&lt;path d='M -80 128 C 220 138 420 468 760 508 C 1090 546 1250 318 1420 108'/&gt;&lt;path d='M -80 162 C 220 172 420 502 760 542 C 1090 580 1250 352 1420 142'/&gt;&lt;path d='M -80 196 C 220 206 420 536 760 576 C 1090 614 1250 386 1420 176'/&gt;&lt;path d='M -80 230 C 220 240 420 570 760 610 C 1090 648 1250 420 1420 210'/&gt;&lt;path d='M -80 264 C 220 274 420 604 760 644 C 1090 682 1250 454 1420 244'/&gt;&lt;path d='M -80 298 C 220 308 420 638 760 678 C 1090 716 1250 488 1420 278'/&gt;&lt;path d='M -80 332 C 220 342 420 672 760 712 C 1090 750 1250 522 1420 312'/&gt;&lt;path d='M -80 366 C 220 376 420 706 760 746 C 1090 784 1250 556 1420 346'/&gt;&lt;path d='M -80 400 C 220 410 420 740 760 780 C 1090 818 1250 590 1420 380'/&gt;&lt;path d='M -80 434 C 220 444 420 774 760 814 C 1090 852 1250 624 1420 414'/&gt;&lt;path d='M -80 468 C 220 478 420 808 760 848 C 1090 886 1250 658 1420 448'/&gt;&lt;path d='M -80 502 C 220 512 420 842 760 882 C 1090 920 1250 692 1420 482'/&gt;&lt;path d='M -80 536 C 220 546 420 876 760 916 C 1090 954 1250 726 1420 516'/&gt;&lt;/g&gt;&lt;g fill='none' stroke='%238E9BE8' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' opacity='0.5'&gt;&lt;path d='M 1407.3 41.3 L 1420 40 L 1421.3 52.7'/&gt;&lt;path d='M 1407.3 75.3 L 1420 74 L 1421.3 86.7'/&gt;&lt;path d='M 1407.3 109.3 L 1420 108 L 1421.3 120.7'/&gt;&lt;path d='M 1407.3 143.3 L 1420 142 L 1421.3 154.7'/&gt;&lt;path d='M 1407.3 177.3 L 1420 176 L 1421.3 188.7'/&gt;&lt;path d='M 1407.3 211.3 L 1420 210 L 1421.3 222.7'/&gt;&lt;path d='M 1407.3 245.3 L 1420 244 L 1421.3 256.7'/&gt;&lt;path d='M 1407.3 279.3 L 1420 278 L 1421.3 290.7'/&gt;&lt;path d='M 1407.3 313.3 L 1420 312 L 1421.3 324.7'/&gt;&lt;path d='M 1407.3 347.3 L 1420 346 L 1421.3 358.7'/&gt;&lt;path d='M 1407.3 381.3 L 1420 380 L 1421.3 392.7'/&gt;&lt;path d='M 1407.3 415.3 L 1420 414 L 1421.3 426.7'/&gt;&lt;path d='M 1407.3 449.3 L 1420 448 L 1421.3 460.7'/&gt;&lt;path d='M 1407.3 483.3 L 1420 482 L 1421.3 494.7'/&gt;&lt;path d='M 1407.3 517.3 L 1420 516 L 1421.3 528.7'/&gt;&lt;/g&gt;&lt;/svg&gt;&quot;);background-repeat:no-repeat;background-position:right top;background-size:100% auto"></div>
+
+  <div style="height:88px;flex-shrink:0;padding:0 clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1">
+    <img src="assets/inspira-logo-gold.svg" alt="Inspira" style="display:block;width:auto;height:34px">
+    <a href="#" onClick="{{ noop }}" style="font-weight:600;font-size:14px;line-height:20px;color:#FFD008;text-decoration:none">Contact Us</a>
+  </div>
+
+  <div style="flex:1;display:flex;justify-content:center;padding:40px clamp(24px,6vw,80px) 64px;position:relative;z-index:1">
+    <div style="width:min(480px,100%);display:flex;flex-direction:column;gap:clamp(32px,5vw,56px)">
+      <span style="font-family:'PP Formula','PP Formula Condensed','Archivo Narrow',Inter,sans-serif;font-weight:400;font-size:clamp(40px,5vw,64px);line-height:1.12;letter-spacing:-0.01em;color:#FFD008">Welcome to<br>Inspira Financial</span>
+      <div style="background:#FFFFFF;border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;gap:24px;align-items:stretch">
+        <span style="font-weight:700;font-size:18px;line-height:24px;color:#1B216B">Log in to your account</span>
+        <sc-if value="{{ isEmailStep }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.PrimaryInputVert" label="Email address *" placeholder="Enter email" value="{{ email }}" onChange="{{ onEmail }}" full-width="{{ true }}" hint-size="100%,72px"></x-import>
+            <span style="font-size:14px;line-height:20px;letter-spacing:0.17px;color:rgba(0,0,0,0.68);text-wrap:pretty">Each advisor must use their own unique email address to log in. Shared or team emails are not supported, as your email is tied to your individual profile and credentials.</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isPasswordStep }}">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.PrimaryInputVert" label="Password *" state="masked" placeholder="Enter password" value="{{ password }}" onChange="{{ onPassword }}" full-width="{{ true }}" hint-size="100%,72px"></x-import>
+            <span style="font-size:14px;line-height:20px;letter-spacing:0.17px;color:rgba(0,0,0,0.68);text-wrap:pretty">Use the password you set when you claimed your advisor profile.</span>
+          </div>
+        </sc-if>
+        <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.InspiraButton" hierarchy="primary" size="lg" onClick="{{ loginContinue }}" hint-size="100%,48px">Continue</x-import>
+        <div style="display:flex;flex-direction:column;gap:12px;align-items:stretch">
+          <span style="font-size:16px;line-height:24px;color:#1C1C1C;text-align:center">New to our platform?</span>
+          <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.InspiraButton" hierarchy="secondary" size="md" onClick="{{ noop }}" hint-size="100%,40px">Contact support</x-import>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex-shrink: 0; padding: 0 clamp(20px,4vw,48px) 48px; position: static; z-index: 1">
+    <div style="height:1px;background:rgba(255,255,255,0.35);margin-bottom:32px"></div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px;flex-shrink:0">
+        <a href="#" onClick="{{ noop }}" style="font-weight:600;font-size:14px;line-height:20px;color:#FFD008;text-decoration:none">Privacy</a>
+        <a href="#" onClick="{{ noop }}" style="font-weight:600;font-size:14px;line-height:20px;color:#FFD008;text-decoration:none">Security</a>
+        <a href="#" onClick="{{ noop }}" style="font-weight:600;font-size:14px;line-height:20px;color:#FFD008;text-decoration:none">Terms of Use and Service</a>
+        <a href="#" onClick="{{ noop }}" style="font-weight:600;font-size:14px;line-height:20px;color:#FFD008;text-decoration:none">Contact Us</a>
+      </div>
+      <div style="flex:1 1 420px;max-width:560px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:#FFFFFF">©2026 Inspira Financial</span>
+        <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:rgba(255,255,255,0.85);text-wrap:pretty">Inspira Financial Trust, LLC and its affiliates perform the duties of a directed custodian and/or an administrator of consumer directed benefits and, as such, do not provide due diligence to third parties on prospective investments, platforms, sponsors, or service providers, and do not offer or sell investments or provide investment, tax, or legal advice.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showDialog }}">
+<div style="position:fixed;inset:0;z-index:60;background:rgba(15,17,54,0.5);display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="width:800px;max-width:100%;max-height:88vh;background:#FFFFFF;border-radius:32px;box-shadow:0 4px 20px 0 rgba(61,61,58,0.25);padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:30px">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="flex-grow:1;font-weight:700;font-size:24px;line-height:32px;color:#1C1C1C">Review and confirm the disclosure to download</span>
+      <span onClick="{{ closeDialog }}" style="display:flex;cursor:pointer;color:#1B216B">
+        <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="CloseFilled" size="20" hint-size="20px,20px"></x-import>
+      </span>
+    </div>
+    <div style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:16px;padding-right:12px">
+      <span style="font-size:14px;line-height:20px;color:#1C1C1C;text-wrap:pretty">The information in this export is provided for informational purposes only. Market values, cost basis and gain/loss figures are supplied by third parties and are not verified by Inspira Financial Trust, LLC.</span>
+      <span style="font-size:14px;line-height:20px;color:#1C1C1C;text-wrap:pretty">Inspira Financial Trust, LLC and its affiliates perform the duties of a directed custodian and/or an administrator of consumer directed benefits. We do not provide due diligence on prospective investments, platforms, sponsors or service providers, and we do not offer or sell investments or provide investment, tax or legal advice.</span>
+      <span style="font-size:14px;line-height:20px;color:#1C1C1C;text-wrap:pretty">Your official statements and confirmations contain the most accurate and up-to-date information on account holdings. Where this export and an official statement disagree, the statement governs.</span>
+      <span style="font-size:14px;line-height:20px;color:#1C1C1C;text-wrap:pretty">By continuing you confirm that you are the advisor of record for the accounts included in this file, and that you will handle the exported data in line with your firm's information-security policy.</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Button" variant="contained" size="medium" onClick="{{ confirmDownload }}" hint-size="200px,40px">Confirm and continue</x-import>
+      <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Button" variant="text" size="medium" onClick="{{ closeDialog }}" hint-size="100px,40px">Cancel</x-import>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ toast }}">
+<div style="position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:70;background:#1B216B;color:#FFFFFF;padding:12px 20px;border-radius:12px;box-shadow:0 4px 20px 0 rgba(61,61,58,0.25);font-weight:500;font-size:14px;line-height:20px">{{ toast }}</div>
+</sc-if>
+
+<sc-if value="{{ showTools }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ openDrawer }}" style="position:fixed;right:24px;bottom:24px;z-index:50;display:flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:100px;background:#1B216B;color:#FFFFFF;box-shadow:0 4px 20px 0 rgba(61,61,58,0.35);cursor:pointer;font-weight:600;font-size:14px;line-height:20px" style-hover="background:#4553A9">
+  <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="EditFilled" size="16" hint-size="16px,16px"></x-import>
+  Demo data
+</div>
+</sc-if>
+
+<sc-if value="{{ drawerOpen }}">
+<div style="position:fixed;inset:0;z-index:80;display:flex;justify-content:flex-end;background:rgba(15,17,54,0.35)">
+  <div style="width:520px;max-width:100%;height:100%;background:#F7F6F5;box-shadow:-8px 0 40px rgba(41,37,33,0.25);display:flex;flex-direction:column">
+    <div style="flex-shrink:0;padding:20px 24px;background:#1B216B;display:flex;align-items:center;gap:12px">
+      <div style="flex-grow:1;display:flex;flex-direction:column;gap:2px">
+        <span style="font-weight:700;font-size:18px;line-height:24px;color:#FFFFFF">Demo data</span>
+        <span style="font-size:13px;line-height:18px;letter-spacing:0.16px;color:rgba(255,255,255,0.7)">Set up the story before you present. Saved on this browser.</span>
+      </div>
+      <span onClick="{{ closeDrawer }}" style="display:flex;cursor:pointer;color:#FFFFFF">
+        <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="CloseFilled" size="20" hint-size="20px,20px"></x-import>
+      </span>
+    </div>
+
+    <div style="flex:1;min-height:0;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-weight:600;font-size:10px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Start from a preset</span>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ presets }}" as="p" hint-placeholder-count="3">
+            <div onClick="{{ p.apply }}" style="height:34px;padding:0 16px;border-radius:16px;background:#FFFFFF;box-shadow:inset 0 0 0 1px #DAD7CF;display:flex;align-items:center;cursor:pointer;font-weight:600;font-size:13px;line-height:18px;color:#1B216B" style-hover="box-shadow:inset 0 0 0 1.5px #4553A9">{{ p.name }}</div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <span style="font-weight:600;font-size:10px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Advisor</span>
+        <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.TextField" size="small" label="Name" value="{{ advisorName }}" onChange="{{ setAdvisorName }}" full-width="{{ true }}" hint-size="100%,56px"></x-import>
+        <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.TextField" size="small" label="Firm line" value="{{ firmName }}" onChange="{{ setFirmName }}" full-width="{{ true }}" hint-size="100%,56px"></x-import>
+        <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.TextField" size="small" label="Page title" value="{{ pageTitle }}" onChange="{{ setPageTitle }}" full-width="{{ true }}" hint-size="100%,56px"></x-import>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span style="flex-grow:1;font-weight:600;font-size:10px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Accounts</span>
+          <span style="font-size:13px;line-height:18px;color:rgba(0,0,0,0.68);font-variant-numeric:tabular-nums">{{ aum }} AUM</span>
+        </div>
+        <sc-for list="{{ editRows }}" as="e" hint-placeholder-count="4">
+          <div style="background:#FFFFFF;border-radius:12px;box-shadow:0 2px 8px rgba(41,37,33,0.08);padding:14px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <input value="{{ e.holder }}" onChange="{{ e.setHolder }}" placeholder="Account holder" style="flex-grow:1;min-width:0;height:36px;padding:0 10px;box-sizing:border-box;border:none;border-radius:8px;background:#F7F6F5;box-shadow:inset 0 0 0 1px #E9E7E2;font-weight:600;font-size:14px;color:#1C1C1C;outline:none">
+              <span onClick="{{ e.remove }}" title="Remove account" style="display:flex;width:32px;height:32px;border-radius:100px;align-items:center;justify-content:center;cursor:pointer;color:#716A5B;flex-shrink:0" style-hover="background:rgba(0,0,0,0.06)">
+                <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="DeleteFilled" size="16" hint-size="16px,16px"></x-import>
+              </span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:8px">
+              <input value="{{ e.type }}" onChange="{{ e.setType }}" placeholder="Account type" style="height:36px;padding:0 10px;box-sizing:border-box;border:none;border-radius:8px;background:#F7F6F5;box-shadow:inset 0 0 0 1px #E9E7E2;font-size:14px;color:#1C1C1C;outline:none;min-width:0">
+              <input value="{{ e.number }}" onChange="{{ e.setNumber }}" placeholder="****0000" style="height:36px;padding:0 10px;box-sizing:border-box;border:none;border-radius:8px;background:#F7F6F5;box-shadow:inset 0 0 0 1px #E9E7E2;font-size:14px;color:#1C1C1C;outline:none;min-width:0;font-variant-numeric:tabular-nums">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+              <label style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-size:10px;line-height:14px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Market value</span><input value="{{ e.value }}" onChange="{{ e.setValue }}" style="height:36px;padding:0 10px;box-sizing:border-box;border:none;border-radius:8px;background:#F7F6F5;box-shadow:inset 0 0 0 1px #E9E7E2;font-size:14px;color:#1C1C1C;outline:none;min-width:0;font-variant-numeric:tabular-nums"></label>
+              <label style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-size:10px;line-height:14px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Cash</span><input value="{{ e.cash }}" onChange="{{ e.setCash }}" style="height:36px;padding:0 10px;box-sizing:border-box;border:none;border-radius:8px;background:#F7F6F5;box-shadow:inset 0 0 0 1px #E9E7E2;font-size:14px;color:#1C1C1C;outline:none;min-width:0;font-variant-numeric:tabular-nums"></label>
+              <label style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-size:10px;line-height:14px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Last activity</span><input value="{{ e.last }}" onChange="{{ e.setLast }}" style="height:36px;padding:0 10px;box-sizing:border-box;border:none;border-radius:8px;background:#F7F6F5;box-shadow:inset 0 0 0 1px #E9E7E2;font-size:14px;color:#1C1C1C;outline:none;min-width:0;font-variant-numeric:tabular-nums"></label>
+            </div>
+          </div>
+        </sc-for>
+        <div onClick="{{ addAccount }}" style="display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:12px;box-shadow:inset 0 0 0 2px rgba(69,83,169,0.5);cursor:pointer;font-weight:600;font-size:14px;line-height:20px;color:#4553A9" style-hover="background:rgba(69,83,169,0.04)">
+          <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Icon" name="AddFilled" size="16" hint-size="16px,16px"></x-import>
+          Add account
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-weight:600;font-size:10px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.68)">Present</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Button" variant="outlined" size="small" onClick="{{ startAtLogin }}" hint-size="150px,30px">Start at login screen</x-import>
+          <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Button" variant="text" size="small" onClick="{{ resetSample }}" hint-size="150px,30px">Reset to sample</x-import>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex-shrink:0;padding:16px 24px;background:#FFFFFF;box-shadow:0 -1px 0 #E9E7E2;display:flex;justify-content:flex-end">
+      <x-import component-from-global-scope="InspiraAdvisorMUILibrary_3f4835.Button" variant="contained" size="medium" onClick="{{ closeDrawer }}" hint-size="120px,40px">Done</x-import>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024},&quot;pageTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Inspira Advisor Platform&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Demo&quot;},&quot;demoTools&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Demo&quot;},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dashboard&quot;,&quot;login&quot;],&quot;default&quot;:&quot;dashboard&quot;,&quot;tsType&quot;:&quot;'dashboard' | 'login'&quot;,&quot;section&quot;:&quot;Demo&quot;}}">
+const money = (n) => '$' + Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const num = (n, d) => Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+const parseNum = (s) => Number(String(s).replace(/[^0-9.\-]/g, '')) || 0;
+
+const CELL = 'padding:0 10px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;';
+const TXT = 'font-size:14px;line-height:1.43;letter-spacing:0.17px;color:#1C1C1C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis';
+const TXTNUM = TXT + ';font-variant-numeric:tabular-nums';
+const CHIP = 'display:inline-flex;align-items:center;height:32px;padding:0 10px;border-radius:100px;font-size:13px;line-height:18px;letter-spacing:0.16px;';
+const CHIPS = {
+  Paid: CHIP + 'background:#DFF7EA;color:#005C57',
+  Due: CHIP + 'background:#FFEED6;color:#C15701',
+  'Past due': CHIP + 'background:#FDE5E5;color:#591212'
+};
+
+const SAMPLE = {
+  advisor: { name: 'Joe Giraffe', firm: 'Advisory Services' },
+  pageTitle: 'Inspira Advisor Platform',
+  accounts: [
+    { holder: 'Nick Bobcat', type: 'Roth IRA', number: '****6613', value: 196973.04, cash: 185245.01, last: '04/14/2026' },
+    { holder: 'Jane Whitfield', type: 'Traditional IRA', number: '****4821', value: 1842201.14, cash: 12004.55, last: '04/13/2026' },
+    { holder: 'Robert Whitfield', type: 'Roth IRA', number: '****7702', value: 920047.77, cash: 3110.90, last: '04/13/2026' },
+    { holder: 'Claire Whitfield', type: 'Traditional IRA', number: '****1130', value: 1488022.00, cash: 48880.20, last: '04/10/2026' },
+    { holder: 'Alan Okonjo', type: 'Traditional IRA', number: '****9014', value: 4027760.50, cash: 22776.05, last: '04/09/2026' },
+    { holder: 'Priya Raman', type: 'Roth IRA', number: '****3388', value: 614429.00, cash: 6442.90, last: '04/08/2026' },
+    { holder: 'Dana Feldstein', type: 'Roth IRA', number: '****2276', value: 283154.40, cash: 1315.44, last: '04/07/2026' },
+    { holder: 'Marcus Ellery', type: 'Traditional IRA', number: '****5590', value: 27412905.66, cash: 91204.18, last: '04/06/2026' },
+    { holder: 'Helena Vargas', type: 'Traditional IRA', number: '****8123', value: 9540118.20, cash: 15908.72, last: '04/02/2026' },
+    { holder: 'Owen Cortland', type: 'Roth IRA', number: '****4407', value: 4236807.62, cash: 40211.86, last: '03/30/2026' }
+  ]
+};
+
+const PRESETS = [
+  { name: 'Inspira sample', data: SAMPLE },
+  {
+    name: 'Northmark Wealth',
+    data: {
+      advisor: { name: 'Dana Whitfield', firm: 'Northmark Wealth Partners' },
+      pageTitle: 'Inspira Advisor Platform',
+      accounts: [
+        { holder: 'Elena Brightwater', type: 'Traditional IRA', number: '****2201', value: 3184220.14, cash: 41220.00, last: '04/15/2026' },
+        { holder: 'Elena Brightwater', type: 'Roth IRA', number: '****2209', value: 812004.77, cash: 9110.40, last: '04/15/2026' },
+        { holder: 'Nathan Brightwater', type: 'Traditional IRA', number: '****8830', value: 1248022.00, cash: 12888.02, last: '04/11/2026' },
+        { holder: 'Samuel Okoye', type: 'Roth IRA', number: '****5514', value: 6027760.50, cash: 62776.05, last: '04/09/2026' },
+        { holder: 'Marisol Vega', type: 'Traditional IRA', number: '****3388', value: 1861442.90, cash: 20644.29, last: '04/08/2026' },
+        { holder: 'Theo Lindqvist', type: 'Roth IRA', number: '****7726', value: 983154.40, cash: 11315.44, last: '04/03/2026' }
+      ]
+    }
+  },
+  {
+    name: 'Halloran Advisory',
+    data: {
+      advisor: { name: 'Miguel Cortez', firm: 'Halloran Advisory Group' },
+      pageTitle: 'Inspira Advisor Platform',
+      accounts: [
+        { holder: 'Ruth Halloran', type: 'Traditional IRA', number: '****1042', value: 5240118.20, cash: 84908.72, last: '04/16/2026' },
+        { holder: 'Ruth Halloran', type: 'Roth IRA', number: '****1049', value: 1102905.66, cash: 21204.18, last: '04/16/2026' },
+        { holder: 'Peter Halloran', type: 'Roth IRA', number: '****6607', value: 536807.62, cash: 30211.86, last: '04/12/2026' },
+        { holder: 'Ines Duarte', type: 'Traditional IRA', number: '****4471', value: 414429.00, cash: 5442.90, last: '04/05/2026' }
+      ]
+    }
+  }
+];
+
+const MIX = [
+  { name: 'Vanguard Target Retirement 2060 Fund', kind: 'Fund', w: 0.44, price: 12.41, date: '05/11/2025' },
+  { name: 'Fidelity 500 Index Fund', kind: 'Fund', w: 0.34, price: 187.62, date: '05/11/2025' },
+  { name: 'Privately held debt \u2014 Series B note', kind: 'Alternative', w: 0.22, price: 1000.00, date: '03/31/2025' }
+];
+
+const FORMS = [
+  { name: 'Account transfer request', desc: 'Move assets from another custodian into an Inspira account.' },
+  { name: 'Distribution request', desc: 'Request a one-time or recurring distribution from a retirement account.' },
+  { name: 'Beneficiary designation', desc: 'Add or change primary and contingent beneficiaries.' },
+  { name: 'Alternative asset purchase', desc: 'Direct the purchase of a privately held asset.' },
+  { name: 'Fee payment authorization', desc: 'Authorize advisory fees to be paid from the account.' },
+  { name: 'Advisor authorization', desc: 'Grant or remove advisor access on a client account.' }
+];
+
+const stamp = (d) => {
+  const h = d.getHours();
+  const m = String(d.getMinutes()).padStart(2, '0');
+  const ap = h >= 12 ? 'pm' : 'am';
+  const h12 = h % 12 === 0 ? 12 : h % 12;
+  return (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + ' at ' + h12 + ':' + m + ap;
+};
+
+class Component extends DCLogic {
+  state = {
+    screen: 'app', loginStage: 'email', email: 'joe.giraffe@northmark.com', password: '',
+    nav: 'dashboard', view: 'dashboard', tab: 'holdings',
+    acctIdx: 0, query: '', sortDesc: true, dialog: false, toast: '', drawer: false, starred: false, profileOpen: false,
+    asOf: stamp(new Date()), data: SAMPLE
+  };
+
+  componentDidMount() {
+    let saved = null;
+    try { saved = JSON.parse(window.localStorage.getItem('inspira_advisor_demo_v2') || 'null'); } catch (e) { saved = null; }
+    const next = { asOf: stamp(new Date()) };
+    if (saved && saved.accounts && saved.accounts.length) next.data = saved;
+    if ((this.props.startScreen || 'dashboard') === 'login') { next.screen = 'login'; next.loginStage = 'email'; }
+    this.setState(next);
+  }
+
+  persist(data) {
+    try { window.localStorage.setItem('inspira_advisor_demo_v2', JSON.stringify(data)); } catch (e) { /* private mode */ }
+  }
+
+  setData(mut) {
+    const data = JSON.parse(JSON.stringify(this.state.data));
+    mut(data);
+    this.persist(data);
+    this.setState({ data });
+  }
+
+  flash(msg) {
+    this.setState({ toast: msg });
+    window.clearTimeout(this._t);
+    this._t = window.setTimeout(() => this.setState({ toast: '' }), 2600);
+  }
+
+  holdings(acct) {
+    const cash = Number(acct.cash) || 0;
+    const rest = Math.max(0, (Number(acct.value) || 0) - cash);
+    const total = cash + rest || 1;
+    const rows = [{ name: 'Cash sweep account', kind: 'Available cash', qty: num(cash, 2), price: money(1), date: acct.last, value: cash, cost: cash }];
+    MIX.forEach((m) => {
+      const v = rest * m.w;
+      rows.push({ name: m.name, kind: m.kind, qty: num(v / m.price, 4), price: money(m.price), date: m.date, value: v, cost: v * 0.837 });
+    });
+    return rows.map((r) => ({ ...r, pct: num((r.value / total) * 100, 2) + '%' }));
+  }
+
+  transactions(acct) {
+    const top = MIX[0];
+    const base = Math.max(1000, (Number(acct.value) || 0) * 0.012);
+    return [
+      { date: '2026-01-30', kind: 'Buy', asset: top.name, qty: num(base / top.price, 4), price: money(top.price), amount: money(base) },
+      { date: '2026-01-14', kind: 'Dividend', asset: MIX[1].name, qty: '\u2014', price: '\u2014', amount: money(base * 0.031) },
+      { date: '2025-12-19', kind: 'Sell', asset: MIX[1].name, qty: num((base * 0.4) / MIX[1].price, 4), price: money(MIX[1].price), amount: money(base * 0.4) },
+      { date: '2025-12-01', kind: 'Contribution', asset: 'Cash sweep account', qty: '\u2014', price: '\u2014', amount: money(7000) }
+    ];
+  }
+
+  statements() {
+    return [
+      { date: '04/01/2026', type: 'Account statement', doc: 'March 2026 statement' },
+      { date: '01/03/2026', type: 'Account statement', doc: 'December 2025 statement' },
+      { date: '01/31/2026', type: 'Tax form', doc: '2025 Form 5498' }
+    ];
+  }
+
+  invoices(acct) {
+    const annual = 725.00;
+    const holding = Math.max(120, Math.min(2400, (Number(acct.value) || 0) * 0.00016));
+    return [
+      { date: '12/20/2025', fee: 'Annual account fee', amount: annual, pay: 'MasterCard ****4235', pdate: '\u2014', status: 'Due' },
+      { date: '12/20/2025', fee: 'Asset holding fee', amount: holding, pay: '\u2014', pdate: '\u2014', status: 'Past due' },
+      { date: '12/20/2024', fee: 'Annual account fee', amount: annual, pay: 'MasterCard ****4235', pdate: '01/03/2025', status: 'Paid' },
+      { date: '12/20/2023', fee: 'Annual account fee', amount: annual, pay: 'MasterCard ****4235', pdate: '01/03/2024', status: 'Paid' },
+      { date: '12/20/2022', fee: 'Annual account fee', amount: annual, pay: 'MasterCard ****4235', pdate: '01/03/2023', status: 'Paid' },
+      { date: '12/20/2021', fee: 'Annual account fee', amount: annual, pay: 'MasterCard ****4235', pdate: '01/03/2022', status: 'Paid' }
+    ];
+  }
+
+  cell(text, style, extra) {
+    return { text, style: CELL + (style || ''), textStyle: (extra && extra.textStyle) || TXT, isText: !(extra && (extra.chip || extra.link)), isChip: !!(extra && extra.chip), isLink: !!(extra && extra.link), chipStyle: (extra && extra.chip) ? (CHIPS[text] || CHIPS.Paid) : '', sub: !!(extra && extra.sub), subText: (extra && extra.sub) || '' };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const d = s.data || SAMPLE;
+    const accounts = d.accounts || [];
+    const advisorName = (d.advisor && d.advisor.name) || '';
+    const firmName = (d.advisor && d.advisor.firm) || '';
+    const pageTitle = this.props.pageTitle || d.pageTitle || 'Inspira Advisor Platform';
+    const holders = [];
+    accounts.forEach((a) => { if (holders.indexOf(a.holder) === -1) holders.push(a.holder); });
+    const aumTotal = accounts.reduce((t, a) => t + (Number(a.value) || 0), 0);
+
+    const q = s.query.trim().toLowerCase();
+    let filtered = accounts.map((a, i) => ({ a, i }));
+    if (q) filtered = filtered.filter((x) => (x.a.holder + ' ' + x.a.type + ' ' + x.a.number).toLowerCase().indexOf(q) !== -1);
+    filtered = filtered.slice().sort((x, y) => s.sortDesc ? (Number(y.a.value) || 0) - (Number(x.a.value) || 0) : (Number(x.a.value) || 0) - (Number(y.a.value) || 0));
+
+    const rows = filtered.map((x) => ({
+      holder: x.a.holder, number: x.a.number, type: x.a.type,
+      cash: money(x.a.cash), value: money(x.a.value), last: x.a.last,
+      open: () => this.setState({ view: 'account', nav: 'dashboard', tab: 'holdings', acctIdx: x.i })
+    }));
+
+    const acct = accounts[s.acctIdx] || accounts[0] || { holder: '', type: '', number: '', value: 0, cash: 0, last: '' };
+    const sibling = accounts.map((a, i) => ({ a, i })).filter((x) => x.a.holder === acct.holder);
+    const accountOptions = sibling.map((x) => x.a.type + ' ' + x.a.number);
+    const accountLabel = acct.type + ' ' + acct.number;
+
+    let cols = [];
+    let tableRows = [];
+    let tabTitle = 'Holdings';
+    const flexL = 'flex:1;min-width:0;';
+    const w = (n) => 'width:' + n + 'px;flex-shrink:0;';
+    const right = 'align-items:flex-end;';
+
+    if (s.tab === 'holdings') {
+      tabTitle = 'Holdings';
+      cols = [
+        { label: 'Asset name', style: CELL + 'width:304px;flex-shrink:0;' },
+        { label: 'Asset type', style: CELL + flexL },
+        { label: 'Quantity', style: CELL + w(120) },
+        { label: 'Market price', style: CELL + w(126) + right },
+        { label: 'Price date', style: CELL + w(120) },
+        { label: 'Market value / MV%', style: CELL + flexL + right },
+        { label: 'Total cost', style: CELL + w(129) + right }
+      ];
+      tableRows = this.holdings(acct).map((h) => ({
+        cells: [
+          this.cell(h.name, 'width:304px;flex-shrink:0;'),
+          this.cell(h.kind, flexL),
+          this.cell(h.qty, w(120), { textStyle: TXTNUM }),
+          this.cell(h.price, w(126) + right, { textStyle: TXTNUM }),
+          this.cell(h.date, w(120), { textStyle: TXTNUM }),
+          this.cell(money(h.value), flexL + right, { textStyle: TXTNUM, sub: h.pct }),
+          this.cell(money(h.cost), w(129) + right, { textStyle: TXTNUM })
+        ]
+      }));
+    } else if (s.tab === 'transactions') {
+      tabTitle = 'Transactions';
+      cols = [
+        { label: 'Date', style: CELL + w(140) },
+        { label: 'Transaction type', style: CELL + w(180) },
+        { label: 'Related asset', style: CELL + flexL },
+        { label: 'Quantity', style: CELL + w(140) },
+        { label: 'Price', style: CELL + w(140) + right },
+        { label: 'Amount (total)', style: CELL + w(160) + right }
+      ];
+      tableRows = this.transactions(acct).map((t) => ({
+        cells: [
+          this.cell(t.date, w(140), { textStyle: TXTNUM }),
+          this.cell(t.kind, w(180)),
+          this.cell(t.asset, flexL),
+          this.cell(t.qty, w(140), { textStyle: TXTNUM }),
+          this.cell(t.price, w(140) + right, { textStyle: TXTNUM }),
+          this.cell(t.amount, w(160) + right, { textStyle: TXTNUM })
+        ]
+      }));
+    } else if (s.tab === 'statements') {
+      tabTitle = 'Statements & tax forms';
+      cols = [
+        { label: 'Generated date', style: CELL + w(220) },
+        { label: 'Document type', style: CELL + w(260) },
+        { label: 'Document', style: CELL + flexL }
+      ];
+      tableRows = this.statements().map((r) => ({
+        cells: [
+          this.cell(r.date, w(220), { textStyle: TXTNUM }),
+          this.cell(r.type, w(260)),
+          this.cell(r.doc, flexL, { link: true })
+        ]
+      }));
+    } else {
+      tabTitle = 'Billing activity';
+      cols = [
+        { label: 'Issue date', style: CELL + flexL },
+        { label: 'Fee type', style: CELL + flexL },
+        { label: 'Amount', style: CELL + flexL },
+        { label: 'Payment', style: CELL + flexL },
+        { label: 'Pmt date', style: CELL + flexL },
+        { label: 'Status', style: CELL + w(173) }
+      ];
+      tableRows = this.invoices(acct).map((b) => ({
+        cells: [
+          this.cell(b.date, flexL, { textStyle: TXTNUM }),
+          this.cell(b.fee, flexL),
+          this.cell(money(b.amount), flexL, { textStyle: TXTNUM }),
+          this.cell(b.pay, flexL),
+          this.cell(b.pdate, flexL, { textStyle: TXTNUM }),
+          this.cell(b.status, w(173), { chip: true })
+        ]
+      }));
+    }
+
+    const inv = this.invoices(acct);
+    const openInv = inv.filter((b) => b.status !== 'Paid');
+    const dueTotal = openInv.reduce((t, b) => t + b.amount, 0);
+
+    const centerRows = [];
+    accounts.forEach((a, i) => {
+      this.invoices(a).filter((b) => b.status !== 'Paid').forEach((b) => {
+        centerRows.push({
+          holder: a.holder, date: b.date, fee: b.fee, amount: money(b.amount), status: b.status,
+          chipStyle: CHIPS[b.status] || CHIPS.Paid,
+          open: () => this.setState({ view: 'account', nav: 'dashboard', tab: 'billing', acctIdx: i })
+        });
+      });
+    });
+    const centerDue = centerRows.reduce((t, r) => t + parseNum(r.amount), 0);
+
+    const navItem = (on) => 'display:flex;align-items:center;gap:12px;height:48px;padding:14px 16px;box-sizing:border-box;border-radius:12px;cursor:pointer;transition:background 150ms cubic-bezier(0.4,0,0.2,1);background:' + (on ? 'rgba(255,255,255,0.2)' : 'transparent');
+    const tabStyle = (on) => 'height:40px;padding:0 20px;border-radius:100px 100px 0 0;display:flex;align-items:center;cursor:pointer;font-weight:600;font-size:14px;line-height:20px;transition:background 150ms cubic-bezier(0.4,0,0.2,1);' + (on ? 'color:#4553A9;box-shadow:inset 0 -2px 0 #4553A9' : 'color:#1C1C1C');
+
+    const editRows = accounts.map((a, i) => ({
+      holder: a.holder, type: a.type, number: a.number,
+      value: String(a.value), cash: String(a.cash), last: a.last,
+      setHolder: (e) => this.setData((dd) => { dd.accounts[i].holder = e.target.value; }),
+      setType: (e) => this.setData((dd) => { dd.accounts[i].type = e.target.value; }),
+      setNumber: (e) => this.setData((dd) => { dd.accounts[i].number = e.target.value; }),
+      setValue: (e) => this.setData((dd) => { dd.accounts[i].value = parseNum(e.target.value); }),
+      setCash: (e) => this.setData((dd) => { dd.accounts[i].cash = parseNum(e.target.value); }),
+      setLast: (e) => this.setData((dd) => { dd.accounts[i].last = e.target.value; }),
+      remove: () => this.setData((dd) => { dd.accounts.splice(i, 1); })
+    }));
+
+    return {
+      isApp: s.screen === 'app', isLogin: s.screen === 'login',
+      isEmailStep: s.loginStage === 'email', isPasswordStep: s.loginStage === 'password',
+      loginStep: s.loginStage === 'email' ? 'step 1 of 3' : 'step 2 of 3',
+      email: s.email, password: s.password,
+      onEmail: (v) => this.setState({ email: v }),
+      onPassword: (v) => this.setState({ password: v }),
+      loginContinue: () => {
+        if (s.loginStage === 'email') this.setState({ loginStage: 'password' });
+        else this.setState({ screen: 'app', nav: 'dashboard', view: 'dashboard' });
+      },
+
+      pageTitle, advisorName, firmName,
+      initials: advisorName.split(' ').map((p) => p.charAt(0)).join('').slice(0, 2).toUpperCase(),
+      clientCount: String(holders.length), aum: money(aumTotal),
+      asOf: s.asOf,
+
+      isDashboard: s.screen === 'app' && s.nav === 'dashboard' && s.view === 'dashboard',
+      isAccount: s.screen === 'app' && s.nav === 'dashboard' && s.view === 'account',
+      isForms: s.screen === 'app' && s.nav === 'forms',
+      isBillingCenter: s.screen === 'app' && s.nav === 'billing',
+      isProfile: s.screen === 'app' && s.nav === 'profile',
+      profileOpen: s.profileOpen,
+      profileBg: s.profileOpen ? 'rgba(69,83,169,0.08)' : 'transparent',
+      toggleProfile: () => this.setState({ profileOpen: !s.profileOpen }),
+      openProfile: () => this.setState({ nav: 'profile', view: 'dashboard', profileOpen: false }),
+      signOut: () => this.setState({ profileOpen: false, screen: 'login', loginStage: 'email', nav: 'dashboard', view: 'dashboard', password: '' }),
+
+      navDashStyle: navItem(s.nav === 'dashboard'),
+      navFormsStyle: navItem(s.nav === 'forms'),
+      navBillStyle: navItem(s.nav === 'billing') + 'padding-left:44px;',
+      goDashboard: () => this.setState({ nav: 'dashboard', view: 'dashboard', profileOpen: false }),
+      goForms: () => this.setState({ nav: 'forms', view: 'dashboard', profileOpen: false }),
+      goBilling: () => this.setState({ nav: 'billing', view: 'dashboard', profileOpen: false }),
+
+      rows, rangeLabel: '1\u2013' + rows.length + ' of ' + rows.length,
+      query: s.query, onQuery: (v) => this.setState({ query: v }),
+      sortByValue: () => this.setState({ sortDesc: !s.sortDesc }),
+      sortGlyph: s.sortDesc ? '\u2193' : '\u2191',
+      starred: s.starred, starColor: s.starred ? '#FFD008' : '#716A5B',
+      toggleStar: () => this.setState({ starred: !s.starred }),
+      refresh: () => { this.setState({ asOf: stamp(new Date()) }); this.flash('Balances refreshed'); },
+
+      holderName: acct.holder, accountOptions, accountLabel,
+      acctValue: money(acct.value), acctCash: money(acct.cash),
+      onAccountChange: (v) => {
+        const hit = sibling.filter((x) => (x.a.type + ' ' + x.a.number) === v)[0];
+        if (hit) this.setState({ acctIdx: hit.i });
+      },
+      tabHoldings: () => this.setState({ tab: 'holdings' }),
+      tabTx: () => this.setState({ tab: 'transactions' }),
+      tabStmt: () => this.setState({ tab: 'statements' }),
+      tabBill: () => this.setState({ tab: 'billing' }),
+      tabHoldingsStyle: tabStyle(s.tab === 'holdings'),
+      tabTxStyle: tabStyle(s.tab === 'transactions'),
+      tabStmtStyle: tabStyle(s.tab === 'statements'),
+      tabBillStyle: tabStyle(s.tab === 'billing'),
+      tabTitle, cols, tableRows,
+      tableRange: '1\u2013' + tableRows.length + ' of ' + tableRows.length,
+      showAddForms: s.tab === 'billing' || s.tab === 'statements',
+      showBillAlert: s.tab === 'billing' && openInv.length > 0,
+      billAlertTitle: openInv.length + ' invoices due',
+      billAlertBody: 'Amount due: ' + money(dueTotal),
+      centerRows,
+      centerAlertTitle: centerRows.length + ' invoices due across your book',
+      centerAlertBody: 'Amount due: ' + money(centerDue),
+      forms: FORMS,
+
+      showDialog: s.dialog,
+      openDisclosure: () => this.setState({ dialog: true }),
+      closeDialog: () => this.setState({ dialog: false }),
+      confirmDownload: () => { this.setState({ dialog: false }); this.flash('Your download is on its way'); },
+      toast: s.toast,
+      noop: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+
+      showTools: (this.props.demoTools ?? true) && !s.drawer,
+      drawerOpen: s.drawer,
+      openDrawer: () => this.setState({ drawer: true }),
+      closeDrawer: () => this.setState({ drawer: false }),
+      presets: PRESETS.map((p) => ({
+        name: p.name,
+        apply: () => {
+          const data = JSON.parse(JSON.stringify(p.data));
+          this.persist(data);
+          this.setState({ data, acctIdx: 0, view: 'dashboard', nav: 'dashboard', query: '' });
+        }
+      })),
+      setAdvisorName: (v) => this.setData((dd) => { dd.advisor.name = v; }),
+      setFirmName: (v) => this.setData((dd) => { dd.advisor.firm = v; }),
+      setPageTitle: (v) => this.setData((dd) => { dd.pageTitle = v; }),
+      addAccount: () => this.setData((dd) => {
+        dd.accounts.push({ holder: 'New client', type: 'Traditional IRA', number: '****0000', value: 250000, cash: 5000, last: stamp(new Date()).split(' at ')[0] });
+      }),
+      resetSample: () => {
+        const data = JSON.parse(JSON.stringify(SAMPLE));
+        this.persist(data);
+        this.setState({ data, acctIdx: 0, view: 'dashboard', nav: 'dashboard', query: '' });
+      },
+      startAtLogin: () => this.setState({ drawer: false, screen: 'login', loginStage: 'email' }),
+
+      editRows
+    };
+  }
+}
+
+</script>
+</body>
+</html>
